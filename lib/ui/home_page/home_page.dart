@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:plantapp/data/color.dart';
 import 'package:plantapp/ui/drawer.dart';
 import 'package:plantapp/ui/home_page/all_tabbar.dart';
+import 'package:plantapp/ui/home_page/garden.dart';
+import 'package:plantapp/ui/home_page/indoor.dart';
+import 'package:plantapp/ui/home_page/office.dart';
 import 'package:plantapp/ui/home_page/outdoor.dart';
 
 class HomePage extends StatefulWidget {
@@ -189,9 +192,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: [
                 AllProduct(),
                 OutDoor(),
-                Container(),
-                Container(),
-                Container(),
+                InDoor(),
+                Office(),
+                Garden(),
               ],),
           )
 

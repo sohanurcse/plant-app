@@ -31,7 +31,7 @@ class AppDrawer extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    'https://images.pexels.com/photos/7825931/pexels-photo-7825931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
+                                    'https://indoor.pexels.com/photos/7825931/pexels-photo-7825931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
                                 fit: BoxFit.cover)),
                       ),
                       Container(
