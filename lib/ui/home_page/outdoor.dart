@@ -1,5 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:plantapp/data/color.dart';
+import 'package:plantapp/data/plant_data.dart';
+import 'package:plantapp/data/plant_model.dart';
+import 'package:plantapp/ui/details_page.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OutDoor extends StatefulWidget {
@@ -13,9 +19,9 @@ class _OutDoorState extends State<OutDoor> {
   final controller = CarouselController();
   int currentindex = 0;
   final imageList = [
-    'https://indoor.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://indoor.unsplash.com/photo-1554321586-92083ba0a115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://indoor.unsplash.com/photo-1536679545597-c2e5e1946495?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1554321586-92083ba0a115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1536679545597-c2e5e1946495?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,15 +59,39 @@ class _OutDoorState extends State<OutDoor> {
             padding: EdgeInsets.only(left: 20, top: 5),
             child: Container(
               width: double.infinity,
-              child: Text(
+              child: const Text(
                 "Latest OutDoor Product",
                 style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
+
                     color: Colors.blueGrey),
               ),
             ),
           ),
+          SizedBox(height: 10,),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GridView.builder(
+                itemCount: userChoices.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.20,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) => ItemCard(
+                        userchoice: plants[index],
+                        press: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsPage(
+                                plant: userChoices[index],
+                              ),
+                            )),
+                      )),
+            ),
+          )
 
         ],
       ),
@@ -91,4 +121,61 @@ class _OutDoorState extends State<OutDoor> {
       );
   void animatedSlide(int index) => controller.animateToPage(index);
 
+}
+
+class ItemCard extends StatelessWidget {
+  final Plants userchoice;
+  final Function press;
+  const ItemCard({Key? key, required this.userchoice, required this.press})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          alignment: Alignment.bottomCenter,
+          decoration: BoxDecoration(
+            color: lightGreen,
+            boxShadow: [
+              BoxShadow(
+                color: black.withOpacity(0.05),
+                blurRadius: 15,
+                offset: const Offset(5, 5),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(25.0),
+            image: DecorationImage(
+              image: AssetImage(userchoice.imagePath),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              '${userchoice.name} - \$${userchoice.price.toStringAsFixed(0)}',
+              style: TextStyle(
+                color: black.withOpacity(0.7),
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          right: 2,
+          top: 2,
+          child: CircleAvatar(
+            backgroundColor: green,
+            radius: 15,
+            child: Image.asset(
+              'assets/add.png',
+              color: white,
+              height: 15,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

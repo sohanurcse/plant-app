@@ -95,23 +95,23 @@ class FeaturedPlants extends StatelessWidget {
       child: Row(
         children: [
           FeaturedPlantCard(
-            images: "garden/bottom_image_01.png",
+            images: "assets/bottom_image_01.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "garden/bottom_image_02.png",
+            images: "assets/bottom_image_02.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "garden/bottom_image_03.png",
+            images: "assets/bottom_image_03.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "garden/bottom_image_04.png",
+            images: "assets/bottom_image_04.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "garden/bottom_image_05.png",
+            images: "assets/bottom_image_05.png",
             press: () {},
           ),
         ],
@@ -136,9 +136,9 @@ class FeaturedPlantCard extends StatelessWidget {
     return GestureDetector(
       onTap: press(),
       child: Container(
-        margin: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
+        margin: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0,right: 20),
         width: size.width * 0.6,
-        height: 185,
+        height: size.width * 0.4,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image:
@@ -160,44 +160,44 @@ class RecomendsPlants extends StatelessWidget {
       child: Row(
         children: [
           RecomendPlantCard(
-            image: "garden/image_01.png",
+            image: "assets/image1.jpg",
             title: "Simantha",
             country: "Russia",
             press: () {},
             prize: 198,
           ),
           RecomendPlantCard(
-            image: "garden/image_02.png",
+            image: "assets/image2.jpg",
             title: "Oriza Sativa",
             country: "Brazil",
             press: () {},
             prize: 440,
           ),
           RecomendPlantCard(
-            image: "garden/image_03.png",
+            image: "assets/image3.jpg",
             title: "Corcoras",
             country: "Argentina",
             press: () {},
             prize: 280,
           ),
           RecomendPlantCard(
-            image: "garden/image_014.png",
+            image: "assets/image_04.png",
             title: "Mangifira",
             country: "Bangladesh",
             press: () {},
             prize: 330,
           ),
           RecomendPlantCard(
-            image: "garden/image_05.png",
+            image: "assets/image5.jpg",
             title: "Nimfiya",
-            country: "Afganisthan",
+            country: "Turkey",
             press: () {},
             prize: 320,
           ),
           RecomendPlantCard(
-            image: "office/image_06.png",
+            image: "assets/image6.jpg",
             title: "Nimfiya",
-            country: "Afganisthan",
+            country: "Uganda",
             press: () {},
             prize: 320,
           ),
@@ -225,8 +225,8 @@ class RecomendPlantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(left: 20, top: 10, bottom: 20),
-      width: size.width * 0.3,
+      margin: EdgeInsets.only(left: 20, top: 10, bottom: 20,right: 20),
+      width: size.width * 0.4,
       child: Column(
         children: [
           Container(

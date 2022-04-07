@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:plantapp/ui/login_page.dart';
+import 'package:plantapp/ui/user_validation/login_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -36,12 +36,11 @@ class _MainPageState extends State<MainPage> {
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 1.8,
+                    letterSpacing: 1.7,
                     color: Colors.grey),
               ),
               SizedBox(
-                height: 450,
-                width: 450,
+                height: MediaQuery.of(context).size.height /1.6,
                 child: Image.asset('assets/Asset1.png'),
               ),
               const SizedBox(

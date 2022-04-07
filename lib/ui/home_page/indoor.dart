@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class _InDoorState extends State<InDoor> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Recomended",
                   style: TextStyle(
                       fontSize: 16,
@@ -36,9 +35,9 @@ class _InDoorState extends State<InDoor> {
                     elevation: 3,
                     hoverElevation: 2.0,
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "View All",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
@@ -46,13 +45,13 @@ class _InDoorState extends State<InDoor> {
               ],
             ),
           ),
-          RecomendsPlants(),
+          const RecomendsPlants(),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Featured Plants",
                   style: TextStyle(
                       fontSize: 16,
@@ -66,7 +65,7 @@ class _InDoorState extends State<InDoor> {
                     elevation: 3,
                     hoverElevation: 2.0,
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "View All",
                       style: TextStyle(
                           fontSize: 16,
@@ -76,8 +75,8 @@ class _InDoorState extends State<InDoor> {
               ],
             ),
           ),
-          FeaturedPlants(),
-          SizedBox(
+          const FeaturedPlants(),
+          const SizedBox(
             height: 10.0,
           )
         ],
@@ -98,15 +97,15 @@ class FeaturedPlants extends StatelessWidget {
       child: Row(
         children: [
           FeaturedPlantCard(
-            images: "indoor/bottom_img_1.png",
+            images: "assets/bottom_img_1.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "indoor/bottom_img_2.png",
+            images: "assets/bottom_img_2.png",
             press: () {},
           ),
           FeaturedPlantCard(
-            images: "indoor/bottom_img_1.png",
+            images: "assets/bottom_img_1.png",
             press: () {},
           ),
         ],
@@ -131,9 +130,9 @@ class FeaturedPlantCard extends StatelessWidget {
     return GestureDetector(
       onTap: press(),
       child: Container(
-        margin: EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
+        margin: const EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0,right: 20),
         width: size.width *0.6,
-        height: 185,
+        height: size.width * 0.4,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image:
@@ -155,37 +154,37 @@ class RecomendsPlants extends StatelessWidget {
       child: Row(
         children: [
           RecomendPlantCard(
-            image: "indoor/image_1.png",
+            image: "assets/image_1.png",
             title: "Simantha",
             country: "Russia",
             press: () {},
             prize: 198,
           ),
           RecomendPlantCard(
-            image: "indoor/image_2.png",
-            title: "Oriza Sativa",
+            image: "assets/image_2.png",
+            title: "Oriza",
             country: "Brazil",
             press: () {},
             prize: 440,
           ),
           RecomendPlantCard(
-            image: "indoor/image_3.png",
+            image: "assets/image_3.png",
             title: "Corcoras",
             country: "Argentina",
             press: () {},
             prize: 280,
           ),
           RecomendPlantCard(
-            image: "indoor/img.png",
+            image: "assets/img.png",
             title: "Mangifira",
             country: "Bangladesh",
             press: () {},
             prize: 330,
           ),
           RecomendPlantCard(
-            image: "indoor/img_main.png",
+            image: "assets/image_02.png",
             title: "Nimfiya",
-            country: "Afganisthan",
+            country: "uganda",
             press: () {},
             prize: 320,
           ),
@@ -213,31 +212,31 @@ class RecomendPlantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(left: 20, top: 10, bottom: 20),
-      width: size.width * 0.3,
+      margin: const EdgeInsets.only(left: 20, top: 10, bottom: 20,right: 20),
+      width: size.width * 0.4,
       child: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height /4.1,
+            height: MediaQuery.of(context).size.height /4,
             decoration: BoxDecoration(
                 image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10.0),
                     topLeft: Radius.circular(10.0))),
           ),
           GestureDetector(
             onTap: press(),
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(10.0),
                   bottomRight: Radius.circular(10.0),
                 ),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(0, 10),
+                    offset: const Offset(0, 10),
                     blurRadius: 50,
                     color: Colors.blueGrey.withOpacity(0.23),
                   )
@@ -258,7 +257,7 @@ class RecomendPlantCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     "\$$prize",
                     style: Theme.of(context)

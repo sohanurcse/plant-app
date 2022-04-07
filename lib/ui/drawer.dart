@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plantapp/classes/helper.dart';
+import 'package:plantapp/ui/app_setting.dart';
+import 'package:plantapp/ui/bottom_navigation.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -30,8 +35,7 @@ class AppDrawer extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://indoor.pexels.com/photos/7825931/pexels-photo-7825931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
+                                image: AssetImage("assets/image_01.png"),
                                 fit: BoxFit.cover)),
                       ),
                       Container(
@@ -93,7 +97,9 @@ class AppDrawer extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 30),
 
                                   child: RaisedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BottomNavigation()));
+                                    },
                                     color: Colors.green.withOpacity(0.1),
                                     elevation: 0,
                                     shape: RoundedRectangleBorder(
@@ -292,7 +298,9 @@ class AppDrawer extends StatelessWidget {
                                       topRight: Radius.circular(30),
                                       bottomRight: Radius.circular(80))),
                                   child: RaisedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AppSettings()));
+                                    },
                                     color: Colors.green.withOpacity(0.1),
                                     elevation: 0,
                                     shape: RoundedRectangleBorder(
@@ -319,25 +327,53 @@ class AppDrawer extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("v-1.0.0",style: TextStyle(fontSize: 12,color: Colors.white),)
+                                Container(
+                                    margin: EdgeInsets.only(left: 20.0),
+                                    child: Text("v-1.0.0",style: TextStyle(fontSize: 12,color: Colors.white),))
                               ],
                             )
                           ],
                         ),
                       ),
                       Positioned(
-                        right: -80,
-                        child: TextButton(
-                          onPressed: (){},
-                          child: Row(
-                            children: [
-                             Icon(Icons.exit_to_app,size: 20,color: Colors.green,),
-                              SizedBox(width: 5,),
-                              Text("Logout",style: TextStyle(fontSize: 16,color: Colors.green,fontWeight: FontWeight.w400),)
-                            ],
+                        right: -70,
+                        bottom: -10,
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 10,right: 10,bottom: 15,top: 10),
+                          width: MediaQuery.of(context).size.width / 2.9,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: RaisedButton(
+                            onPressed: () {
+                              // Fluttertoast.showToast(
+                              //   msg: "Error",  // message
+                              //   toastLength: Toast.LENGTH_SHORT, // length
+                              //   gravity: ToastGravity.BOTTOM,    // location
+                              //   // duration
+                              // );
+                              Helper helper = Helper();
+                              helper.LogOutUser(context);
+                            },
+                            color: Colors.lightGreenAccent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.logout,
+                                  color: Colors.grey,
+                                  size: 30,
+                                ),
+                                Text(
+                                  "Logout?",
+                                  style: TextStyle(fontSize: 22, color: Colors.grey),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       )

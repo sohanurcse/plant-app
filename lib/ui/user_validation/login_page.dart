@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:plantapp/ui/bottom_navigation.dart';
+import 'package:plantapp/classes/helper.dart';
+import 'package:plantapp/ui/user_validation/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,16 +13,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-
-
-  TextEditingController _emailEditingController = TextEditingController();
-  TextEditingController _passEditingController = TextEditingController();
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   RegExp regex = new RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   bool isObsecure = true;
+
+  Helper helper = Helper();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +29,9 @@ class _LoginPageState extends State<LoginPage> {
           Expanded(
             flex: 3,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/login_page_image.jpg"),
+                      image: const AssetImage("assets/login_page_image.jpg"),
                       fit: BoxFit.cover)),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -44,9 +42,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Container(
                       alignment: Alignment.topLeft,
-                      child: Text(
+                      child: const Text(
                         "User Login",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,
                             color: Colors.green),
@@ -71,15 +69,15 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient:
                       LinearGradient(colors: [Colors.green, Colors.lightGreen]),
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
+                      topLeft: const Radius.circular(40),
                       topRight: Radius.circular(40)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: const EdgeInsets.all(25),
                   child: Center(
                     child: Form(
                       key: formKey,
@@ -94,7 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                                 if (!regex.hasMatch(value.toString()))
                                   return "Invalid your Email";
                               },
-                              controller: _emailEditingController,
+                              textInputAction: TextInputAction.next,
+                              controller: helper.email,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(16.0),
                                 border: OutlineInputBorder(
@@ -102,12 +101,12 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: BorderSide.none,
                                 ),
                                 hintText: "Enter Your Email",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 prefixIcon: Container(
                                   padding: const EdgeInsets.only(top: 16,bottom: 16),
                                   margin: const EdgeInsets.only(right: 8),
-                                  child: Icon(Icons.email,color: Colors.lightGreen,),
-                                  decoration: BoxDecoration(
+                                  child: const Icon(Icons.email,color: Colors.lightGreen,),
+                                  decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(
@@ -125,9 +124,10 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             TextFormField(
                               validator: MinLengthValidator(6, errorText: "Should be at least 6 charecter"),
-                              controller: _passEditingController,
+                              controller: helper.pass,
                               obscureText: isObsecure,
                               keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(16.0),
                                 border: OutlineInputBorder(
@@ -135,19 +135,19 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: BorderSide.none,
                                 ),
                                 hintText: "Enter Your password",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 prefixIcon: Container(
                                   padding: const EdgeInsets.only(top: 16,bottom: 16),
                                   margin: const EdgeInsets.only(right: 8),
-                                  child: Icon(Icons.password,color: Colors.lightGreen,),
-                                  decoration: BoxDecoration(
+                                  child: const Icon(Icons.password,color: Colors.lightGreen,),
+                                  decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(
+                                          topRight: const Radius.circular(
                                             50,
                                           ),
-                                          topLeft: Radius.circular(50),
-                                          bottomLeft: Radius.circular(50))),
+                                          topLeft: const Radius.circular(50),
+                                          bottomLeft: const Radius.circular(50))),
                                 ),
                                 suffixIcon: IconButton(onPressed: (){
                                   setState(() {
@@ -162,11 +162,11 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: 20,),
                             RaisedButton(onPressed: () {
-                              if (formKey.currentState!.validate()) {
+                              if (formKey.currentState!.validate() && helper.email != null && helper.pass != null) {
+                                helper.LoginUser(context);
                                 formKey.currentState!.save();
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BottomNavigation()));
-                                print("${_emailEditingController.text.toString()}");
-                                print("${_passEditingController.text.toString()}");
+                                print("${helper.email.toString()}");
+                                print("${helper.pass.toString()}");
                               }else{
                                 return null;
                               }
@@ -175,8 +175,8 @@ class _LoginPageState extends State<LoginPage> {
                             },
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
                               color:Colors.green,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 12.0),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 12.0),
                                 child: Text("Login",style: TextStyle(fontSize: 16,color: Colors.white,fontWeight: FontWeight.w600),),
                               ),
                             ),
@@ -194,9 +194,11 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Text("Don\'t have an account?",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.white.withOpacity(0.7)),),
 
-                            TextButton(onPressed: (){}, child:Text(
+                            TextButton(onPressed: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const SignUp()));
+                            }, child:const Text(
                               "SIGN UP NOW",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize:16,
                                   fontWeight: FontWeight.w900,
                                   letterSpacing: 1,color: Colors.white),

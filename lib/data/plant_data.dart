@@ -158,4 +158,45 @@ List<Plants> userChoices = [
     price: 55.00,
     isFavorit: false,
   ),
+  Plants(
+    id: 4,
+    name: 'popular 4',
+    imagePath: 'assets/03.png',
+    category: 'Office',
+    description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+    price: 55.00,
+    isFavorit: false,
+  ),
+  Plants(
+    id: 5,
+    name: 'popular 4',
+    imagePath: 'assets/03.png',
+    category: 'Office',
+    description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+    price: 55.00,
+    isFavorit: false,
+  ),
+  Plants(
+    id: 6,
+    name: 'popular 4',
+    imagePath: 'assets/03.png',
+    category: 'Office',
+    description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+    price: 55.00,
+    isFavorit: false,
+  ),
+  Plants(
+    id: 7,
+    name: 'popular 4',
+    imagePath: 'assets/03.png',
+    category: 'Office',
+    description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+    price: 55.00,
+    isFavorit: false,
+  ),
+
 ];
